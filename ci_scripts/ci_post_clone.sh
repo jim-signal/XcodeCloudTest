@@ -6,4 +6,4 @@ OUTPUT_DIR="./output"
 mkdir -p "$OUTPUT_DIR"
 
 # Execute the python script using Xcode's internal framework
-python3 ./ci_scripts/fetch-artifact.py --output-dir="$OUTPUT_DIR" --webrtc-version="$WEBRTC_VERSION"
+python3 ./fetch-artifact.py --output-dir="$OUTPUT_DIR" --webrtc-version="$WEBRTC_VERSION"
