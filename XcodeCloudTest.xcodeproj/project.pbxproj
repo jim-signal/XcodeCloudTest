@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		386B3AED3005627D00104B39 /* XcodeCloudTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XcodeCloudTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		386B3AED3005627D00104B39 /* XcodeCloudTest123436752.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XcodeCloudTest123436752.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -40,7 +40,7 @@
 		386B3AEE3005627D00104B39 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				386B3AED3005627D00104B39 /* XcodeCloudTest.app */,
+				386B3AED3005627D00104B39 /* XcodeCloudTest123436752.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -67,7 +67,7 @@
 			packageProductDependencies = (
 			);
 			productName = XcodeCloudTest;
-			productReference = 386B3AED3005627D00104B39 /* XcodeCloudTest.app */;
+			productReference = 386B3AED3005627D00104B39 /* XcodeCloudTest123436752.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -268,7 +268,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.testing14523.XcodeCloudTest;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = XcodeCloudTest123436752;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
@@ -301,7 +301,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.testing14523.XcodeCloudTest;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = XcodeCloudTest123436752;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
