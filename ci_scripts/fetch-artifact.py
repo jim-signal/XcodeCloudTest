@@ -22,6 +22,27 @@ UNVERIFIED_DOWNLOAD_NAME = "unverified.tmp"
 fetch_script_file_path = os.path.realpath(__file__)
 fetch_script_file_dir = os.path.dirname(fetch_script_file_path)
 
+
+
+# Fetch Apple's explicit cloud proxy environment rules
+http_proxy = os.environ.get('HTTP_PROXY') or os.environ.get('http_proxy')
+https_proxy = os.environ.get('HTTPS_PROXY') or os.environ.get('https_proxy')
+
+proxies = {}
+if http_proxy: proxies['http'] = http_proxy
+if https_proxy: proxies['https'] = https_proxy
+
+if proxies:
+    # Build a dedicated proxy handler that forces a patient connection rule
+    proxy_support = urllib.request.ProxyHandler(proxies)
+    opener = urllib.request.build_opener(proxy_support)
+
+    # Inject the configuration directly into Python's global download engine
+    urllib.request.install_opener(opener)
+    print(f"=== Successfully attached Python to Xcode Cloud Proxy: {proxies} ===")
+
+
+
 try:
     with open("./webrtc_artifact_checksums.json".format(fetch_script_file_dir), 'r') as file:
         PREBUILD_CHECKSUMS = json.load(file)
