@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "=== Phase 1: Attempting download WITHOUT fix ==="
 
-WEBRTC_VERSION="7778d"
+WEBRTC_VERSION="7871a"
 OUTPUT_DIR="./output"
 mkdir -p "$OUTPUT_DIR"
 

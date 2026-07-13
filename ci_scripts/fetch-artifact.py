@@ -23,7 +23,7 @@ fetch_script_file_path = os.path.realpath(__file__)
 fetch_script_file_dir = os.path.dirname(fetch_script_file_path)
 
 try:
-    with open("{}/../config/webrtc_artifact_checksums.json".format(fetch_script_file_dir), 'r') as file:
+    with open("./webrtc_artifact_checksums.json".format(fetch_script_file_dir), 'r') as file:
         PREBUILD_CHECKSUMS = json.load(file)
 except FileNotFoundError:
     print("The artifact checksum file was not found.")
