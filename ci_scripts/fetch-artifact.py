@@ -22,27 +22,6 @@ UNVERIFIED_DOWNLOAD_NAME = "unverified.tmp"
 fetch_script_file_path = os.path.realpath(__file__)
 fetch_script_file_dir = os.path.dirname(fetch_script_file_path)
 
-
-
-# Fetch Apple's explicit cloud proxy environment rules
-http_proxy = os.environ.get('HTTP_PROXY') or os.environ.get('http_proxy')
-https_proxy = os.environ.get('HTTPS_PROXY') or os.environ.get('https_proxy')
-
-proxies = {}
-if http_proxy: proxies['http'] = http_proxy
-if https_proxy: proxies['https'] = https_proxy
-
-if proxies:
-    # Build a dedicated proxy handler that forces a patient connection rule
-    proxy_support = urllib.request.ProxyHandler(proxies)
-    opener = urllib.request.build_opener(proxy_support)
-
-    # Inject the configuration directly into Python's global download engine
-    urllib.request.install_opener(opener)
-    print(f"=== Successfully attached Python to Xcode Cloud Proxy: {proxies} ===")
-
-
-
 try:
     with open("./webrtc_artifact_checksums.json".format(fetch_script_file_dir), 'r') as file:
         PREBUILD_CHECKSUMS = json.load(file)
@@ -52,7 +31,6 @@ except FileNotFoundError:
 except json.JSONDecodeError:
     print("The artifact checksum file contains invalid JSON.")
     exit(1)
-
 
 def resolve_os(os_name: str) -> str:
     if os_name in ['darwin', 'macos']:
@@ -126,10 +104,10 @@ def download_if_needed(archive_file: str, url: str, checksum: str, archive_dir: 
     try:
         f_check = open(archive_path, 'rb')
         digest = hashlib.sha256()
-        chunk = f_check.read1()
+        chunk = f_check.read(8192)
         while chunk:
             digest.update(chunk)
-            chunk = f_check.read1()
+            chunk = f_check.read(8192)
         if digest.hexdigest() == checksum.lower():
             return f_check
         print("existing file '{}' has non-matching checksum {}; re-downloading...".format(archive_file, digest.hexdigest()), file=sys.stderr)
@@ -142,11 +120,11 @@ def download_if_needed(archive_file: str, url: str, checksum: str, archive_dir: 
             digest = hashlib.sha256()
             download_path = os.path.join(archive_dir, UNVERIFIED_DOWNLOAD_NAME)
             f_download = open(download_path, 'w+b')
-            chunk = response.read1()
+            chunk = response.read(8192)
             while chunk:
                 digest.update(chunk)
                 f_download.write(chunk)
-                chunk = response.read1()
+                chunk = response.read(8192)
             assert digest.hexdigest() == checksum.lower(), "expected {}, actual {}".format(checksum.lower(), digest.hexdigest())
             f_download.close()
             os.replace(download_path, archive_path)
